@@ -8,11 +8,12 @@ module RubyMotionQuery
 
 
     def self.add_template_actions(template, &block)
-      yes    = "Yes" #NSLocalizedString("Yes", nil)
-      no     = "No" #NSLocalizedString("No", nil)
-      cancel = "Cancel" #NSLocalizedString("Cancel", nil)
-      ok     = "OK" #NSLocalizedString("OK", nil)
-      delete = "Delete" #NSLocalizedString("Delete", nil)
+      yes    = "Yes"._ 
+      no     = "No"._
+      cancel = "Cancel"._
+      ok     = "OK"._
+      delete = "Delete"._
+      reset  = "Reset"._
 
       case template
       when :yes_no
@@ -34,6 +35,11 @@ module RubyMotionQuery
       when :delete_cancel
         [
           rmq.app.make_button(title: delete, tag: :delete, style: :destructive, &block),
+          rmq.app.make_button(title: cancel, tag: :cancel, style: :cancel, &block)
+        ]
+      when :reset_cancel
+        [
+          rmq.app.make_button(title: reset, tag: :reset, style: :destructive, &block),
           rmq.app.make_button(title: cancel, tag: :cancel, style: :cancel, &block)
         ]
       else
